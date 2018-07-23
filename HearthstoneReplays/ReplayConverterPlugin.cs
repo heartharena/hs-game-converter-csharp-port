@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using HearthstoneReplays;
 using HearthstoneReplays.Parser.ReplayData;
 using HearthstoneReplays.Parser.ReplayData.Entities;
+using HearthstoneReplays.Enums;
+using HearthstoneReplays.Parser;
+using HearthstoneReplays.Parser.Handlers;
+using HearthstoneReplays.Parser.ReplayData;
 
 namespace HearthstoneReplays
 {
@@ -48,11 +52,35 @@ namespace HearthstoneReplays
 			});
 		}
 
+		private ReplayParser parser = new ReplayParser();
+
+		public void initRealtimeLogConversion(Action<object> callback)
+		{
+			parser = new ReplayParser();
+			parser.Init(callback);
+		}
+
+		public void realtimeLogProcessing(string logLine)
+		{
+			Logger.Log = onGlobalEvent;
+
+			Task.Run(() => {
+				try
+				{
+					parser.ReadLine(logLine);
+				}
+				catch (Exception e)
+				{
+					onGlobalEvent("Exception when parsing game " + e.GetBaseException(), logLine);
+				}
+			});
+		}
+
 		//plugin.get().onGlobalEvent.addListener(function(first, second)
 		//{
 		//  ...
 		// });
-		
+
 		// plugin.get().triggerGlobalEvent();
 		public void triggerGlobalEvent(string first, string second)
 		{

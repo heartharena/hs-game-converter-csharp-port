@@ -17,6 +17,8 @@ namespace HearthstoneReplays.Parser.Handlers
 {
 	public class DataHandler
 	{
+		public Action<object> EventHandler { get; set; }
+
 		public int previousTimestampHours;
 
 		private Helper helper = new Helper();
@@ -34,6 +36,10 @@ namespace HearthstoneReplays.Parser.Handlers
 				state.CurrentGame = new Game { Data = new List<GameData>(), TimeStamp = timestamp };
 				state.Replay.Games.Add(state.CurrentGame);
 				state.Node = new Node(typeof(Game), state.CurrentGame, 0, null);
+				EventHandler(new GameEvent
+				{
+					Type = "NEW_GAME"
+				});
 				return;
 			}
 

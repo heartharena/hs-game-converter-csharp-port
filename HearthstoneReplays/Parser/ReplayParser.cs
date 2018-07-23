@@ -59,33 +59,47 @@ namespace HearthstoneReplays.Parser
 
 		public void Read(string[] lines)
 		{
-			State.Reset();
-			State.Replay.Games = new List<Game>();
-			Regex logTypeRegex = null;
-
+			Init(null);
 			foreach(var line in lines)
 			{
-				Match match;
-				if(logTypeRegex == null)
-				{
-					match = Regexes.PowerlogLineRegex.Match(line);
-					if(match.Success)
-						logTypeRegex = Regexes.PowerlogLineRegex;
-					else
-					{
-						match = Regexes.OutputlogLineRegex.Match(line);
-						if(match.Success)
-							logTypeRegex = Regexes.OutputlogLineRegex;
-					}
-				}
-				else
-					match = logTypeRegex.Match(line);
-
-				if(!match.Success)
-					continue;
-
-				AddData(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value);
+				ReadLine(line);
 			}
+		}
+
+		public void Init(Action<object> callback)
+		{
+			State.Reset();
+			State.Replay.Games = new List<Game>();
+			dataHandler.EventHandler = callback;
+			//choicesHandler.SetEventHandler(callback);
+			//entityChosenHandler.SetEventHandler(callback);
+			//optionsHandler.SetEventHandler(callback);
+		}
+
+		public void ReadLine(string line)
+		{
+			Match match;
+			Regex logTypeRegex = null;
+			if (logTypeRegex == null)
+			{
+				match = Regexes.PowerlogLineRegex.Match(line);
+				if (match.Success)
+					logTypeRegex = Regexes.PowerlogLineRegex;
+				else
+				{
+					match = Regexes.OutputlogLineRegex.Match(line);
+					if (match.Success)
+						logTypeRegex = Regexes.OutputlogLineRegex;
+				}
+			}
+			else
+				match = logTypeRegex.Match(line);
+
+			if (!match.Success)
+				return;
+
+			AddData(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value);
+
 		}
 
 		private void AddData(string timestamp, string method, string data)
