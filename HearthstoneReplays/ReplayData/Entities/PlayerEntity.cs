@@ -1,6 +1,7 @@
 ﻿#region
 
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 #endregion
 
@@ -28,5 +29,11 @@ namespace HearthstoneReplays.Parser.ReplayData.Entities
 
 		[XmlAttribute("cardback")]
 		public string Cardback { get; set; }
+
+		public override string ToString()
+		{
+			return JsonConvert.SerializeObject(this);
+			//return "PlayerEntity: " + PlayerId + ", " + Name;
+		}
 	}
 }

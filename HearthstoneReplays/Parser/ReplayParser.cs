@@ -70,6 +70,7 @@ namespace HearthstoneReplays.Parser
 		{
 			State.Reset();
 			State.Replay.Games = new List<Game>();
+			State.EventHandler = callback;
 			dataHandler.EventHandler = callback;
 			//choicesHandler.SetEventHandler(callback);
 			//entityChosenHandler.SetEventHandler(callback);
@@ -107,6 +108,7 @@ namespace HearthstoneReplays.Parser
 			switch(method)
 			{
 				case "GameState.DebugPrintPower":
+				case "GameState.DebugPrintGame":
 					dataHandler.Handle(timestamp, data, State);
 					break;
 				//case "GameState.SendChoices":

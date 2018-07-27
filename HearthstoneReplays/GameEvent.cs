@@ -9,5 +9,10 @@ namespace HearthstoneReplays
 	public class GameEvent
 	{
 		public string Type { get; set; }
+		public Object Value { get; set; }
+
+		public override string ToString() {
+			return "GameEvent: " + Type + " (" + Value + ")";
+		}
 	}
 }

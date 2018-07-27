@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
-using System.Threading.Tasks;
-using HearthstoneReplays;
-using HearthstoneReplays.Parser.ReplayData;
-using HearthstoneReplays.Parser.ReplayData.Entities;
-using HearthstoneReplays.Enums;
 using HearthstoneReplays.Parser;
-using HearthstoneReplays.Parser.Handlers;
-using HearthstoneReplays.Parser.ReplayData;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace HearthstoneReplays
 {
@@ -57,7 +51,8 @@ namespace HearthstoneReplays
 		public void initRealtimeLogConversion(Action<object> callback)
 		{
 			parser = new ReplayParser();
-			parser.Init(callback);
+			Action<object> jsonCallback = (gameEvent) => callback(JsonConvert.SerializeObject(gameEvent));
+			parser.Init(jsonCallback);
 		}
 
 		public void realtimeLogProcessing(string logLine)
