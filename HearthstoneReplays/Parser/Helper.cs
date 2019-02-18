@@ -75,13 +75,11 @@ namespace HearthstoneReplays.Parser
 				firstPlayer.Name = data;
 				return firstPlayer.Id;
 			}
-			if(secondPlayer.Name == "UNKNOWN HUMAN PLAYER" || innkeeperNames.Contains(firstPlayer.Name))
+			if(secondPlayer.Name == "UNKNOWN HUMAN PLAYER" || innkeeperNames.Contains(secondPlayer.Name))
 			{
 				secondPlayer.Name = data;
 				return secondPlayer.Id;
 			}
-
-
 			throw new Exception("Could not get id from player name:" + data);
 		}
 
