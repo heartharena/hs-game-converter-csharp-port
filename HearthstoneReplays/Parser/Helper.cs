@@ -77,13 +77,14 @@ namespace HearthstoneReplays.Parser
             if (data != null && data.IndexOf(firstPlayer.Name) != -1) return firstPlayer.Id;
             if (data != null && data.IndexOf(secondPlayer.Name) != -1) return secondPlayer.Id;
 
-
-            if (firstPlayer.Name == "UNKNOWN HUMAN PLAYER" || innkeeperNames.Contains(firstPlayer.Name))
+            if (firstPlayer.Name == "UNKNOWN HUMAN PLAYER" 
+                || innkeeperNames.Select(x => x.ToLower()).Contains(firstPlayer.Name.ToLower()))
 			{
 				firstPlayer.Name = data;
 				return firstPlayer.Id;
 			}
-			if(secondPlayer.Name == "UNKNOWN HUMAN PLAYER" || innkeeperNames.Contains(secondPlayer.Name))
+			if(secondPlayer.Name == "UNKNOWN HUMAN PLAYER" 
+                || innkeeperNames.Select(x => x.ToLower()).Contains(secondPlayer.Name.ToLower()))
 			{
 				secondPlayer.Name = data;
 				return secondPlayer.Id;
