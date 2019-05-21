@@ -382,9 +382,18 @@ namespace HearthstoneReplays.Parser.Handlers
 					var rawEntity = match.Groups[1].Value;
 					var tagName = match.Groups[2].Value;
 					var value = match.Groups[3].Value;
-					var tag = helper.ParseTag(tagName, value);
+                    Tag tag = null;
+                    try
+                    {
+                        tag = helper.ParseTag(tagName, value);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Log("Exception parsing TagChange: " + tagName + " with value " + value, e.Message);
+                        return;
+                    }
 
-					if (tag.Name == (int)GameTag.CURRENT_PLAYER)
+                    if (tag.Name == (int)GameTag.CURRENT_PLAYER)
 					{
 						if (state.FirstPlayerId == -1)
 						{
@@ -421,9 +430,18 @@ namespace HearthstoneReplays.Parser.Handlers
 				try { 
 					var tagName = match.Groups[1].Value;
 					var value = match.Groups[2].Value;
-					var tag = helper.ParseTag(tagName, value);
+                    Tag tag = null;
+                    try
+                    {
+                        tag = helper.ParseTag(tagName, value);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Log("Exception parsing TagChange: " + tagName + " with value " + value, e.Message);
+                        return;
+                    }
 
-					if (tag.Name == (int)GameTag.CURRENT_PLAYER)
+                    if (tag.Name == (int)GameTag.CURRENT_PLAYER)
 						state.FirstPlayerId = ((PlayerEntity)state.Node.Object).Id;
 
 					if(state.Node.Type == typeof(GameEntity))
