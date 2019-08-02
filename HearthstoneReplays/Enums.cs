@@ -81,6 +81,7 @@ namespace HearthstoneReplays.Enums
         THE_BOOMSDAY_PROJECT = 38,
         MAMMOTH_BUNDLE = 41,
         DALARAN = 49,
+        ULDUM = 128,
     }
 
     public enum BrawlType
@@ -151,6 +152,7 @@ namespace HearthstoneReplays.Enums
         BOOMSDAY = 1127,
         DALARAN = 1130,
         TAVERNS_OF_TIME = 1143,
+        ULDUM = 1158,
     }
 
     public enum CardTextBuilderType
@@ -238,11 +240,14 @@ namespace HearthstoneReplays.Enums
         DRAFT_SLOT_HERO_POWER = 3,
     }
 
-    public enum DungeonRewardOption
-    {
-        INVALID = 0,
-        LOOT = 1,
-        TREASURE = 2,
+	public enum DungeonRewardOption
+	{
+		INVALID = 0,
+		LOOT = 1,
+		TREASURE = 2,
+        SHRINE_TREASURE = 3,
+        HERO_POWER = 4,
+        DECK = 5,
     }
 
     public enum EnchantmentVisual
@@ -675,24 +680,29 @@ namespace HearthstoneReplays.Enums
         WEATHERFIRESTORM = 1014,
         WAND = 1015,
         TREAT_AS_PLAYED_HERO_CARD = 1016,
-        NUM_HERO_POWER_DAMAGE_THIS_GAME = 1025,
-        PUZZLE_NAME = 1026,
-        TURN_INDICATOR_ALTERNATIVE_APPEARANCE = 1027,
-        PREVIOUS_PUZZLE_COMPLETED = 1042,
-        GLORIOUSGLOOP = 1044,
-        HEALTH_DISPLAY_COLOR = 1046,
-        HEALTH_DISPLAY_NEGATIVE = 1047,
-        WHIZBANG_DECK_ID = 1048,
-        HIDE_OUT_OF_CARDS_WARNING = 1050,
-        GEARS = 1052,
-        LUNAHIGHLIGHTHINT = 1054,
-        SUPPRESS_JOBS_DONE_VO = 1055,
-        SHRINE = 1057,
-        ALL_HEALING_DOUBLE = 1058,
-        BLOCK_ALL_INPUT = 1071,
-        PUZZLE_MODE = 1073,
-        CARD_DOES_NOTHING = 1075,
-        CASTSWHENDRAWN = 1077,
+		NUM_HERO_POWER_DAMAGE_THIS_GAME = 1025,
+		PUZZLE_NAME = 1026,
+		TURN_INDICATOR_ALTERNATIVE_APPEARANCE = 1027,
+		PREVIOUS_PUZZLE_COMPLETED = 1042,
+		GLORIOUSGLOOP = 1044,
+		HEALTH_DISPLAY_COLOR = 1046,
+		HEALTH_DISPLAY_NEGATIVE = 1047,
+		WHIZBANG_DECK_ID = 1048,
+		HIDE_OUT_OF_CARDS_WARNING = 1050,
+		GEARS = 1052,
+		LUNAHIGHLIGHTHINT = 1054,
+		SUPPRESS_JOBS_DONE_VO = 1055,
+		SHRINE = 1057,
+		ALL_HEALING_DOUBLE = 1058,
+		BLOCK_ALL_INPUT = 1071,
+		PUZZLE_MODE = 1073,
+		CARD_DOES_NOTHING = 1075,
+		CASTSWHENDRAWN = 1077,
+        DISPLAY_CARD_ON_MOUSEOVER = 1078,
+        DECK_POWER_UP = 1080,
+        SIDEKICK = 1081,
+        SIDEKICK_HERO_POWER = 1082,
+        REBORN = 1085,
         SQUELCH_NON_GAME_TRIGGERS_AND_MODIFIERS = 1087,
         QUEST_REWARD_DATABASE_ID = 1089,
         DORMANT = 1090,
@@ -737,8 +747,17 @@ namespace HearthstoneReplays.Enums
         UI_BUFF_COST_UP = 1298,
         DEBUG_DISPLAY_TAG_BOTTOM_RIGHT = 1313,
         DEBUG_DISPLAY_TAG_TOP_RIGHT = 1314,
+        SMART_DISCOVER_DEBUG_ENTITY_1 = 1318,
+        SMART_DISCOVER_DEBUG_ENTITY_2 = 1319,
+        SMART_DISCOVER_DEBUG_ENTITY_3 = 1320,
+        SMART_DISCOVER_DEBUG_TEST_COMPLETE = 1324,
         COPIED_BY_KHADGAR = 1326,
+        SMART_DISCOVER_DEBUG_PASSIVE_EVAL_RESULT_1 = 1328,
+        SMART_DISCOVER_DEBUG_PASSIVE_EVAL_RESULT_2 = 1329,
+        SMART_DISCOVER_DEBUG_PASSIVE_EVAL_RESULT_3 = 1330,
         ALTERNATE_CHAPTER_VO = 1334,
+        HAS_BEEN_REBORN = 1336,
+        USE_DISCOVER_VISUALS = 1342,
         EXTRA_SPELL_CASTS_ADDITIONAL = 1348,
         SQUELCH_LIFETIME_EFFECTS = 1350,
         TAG_TB_RANDOM_DECK_TIME_ID = 1358,
@@ -958,21 +977,23 @@ namespace HearthstoneReplays.Enums
         QUIT = 8,
         CONCEDED = 8,
     }
-
-    public enum PowerType
-    {
-        FULL_ENTITY = 1,
-        SHOW_ENTITY = 2,
-        HIDE_ENTITY = 3,
-        TAG_CHANGE = 4,
-        BLOCK_START = 5,
-        ACTION_START = 5,
-        BLOCK_END = 6,
-        ACTION_END = 6,
-        CREATE_GAME = 7,
-        META_DATA = 8,
-        CHANGE_ENTITY = 9,
-        RESET_GAME = 10,
+    
+	public enum PowerType
+	{
+		FULL_ENTITY = 1,
+		SHOW_ENTITY = 2,
+		HIDE_ENTITY = 3,
+		TAG_CHANGE = 4,
+		BLOCK_START = 5,
+		ACTION_START = 5,
+		BLOCK_END = 6,
+		ACTION_END = 6,
+		CREATE_GAME = 7,
+		META_DATA = 8,
+		CHANGE_ENTITY = 9,
+		RESET_GAME = 10,
+        SUB_SPELL_START = 11,
+        SUB_SPELL_END = 12,
     }
 
     public enum PuzzleType

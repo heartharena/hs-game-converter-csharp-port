@@ -256,9 +256,9 @@ namespace HearthstoneReplays.Parser.Handlers
 					((Game)state.Node.Object).Data.Add(action);
 				else if(state.Node.Type == typeof(Action))
 					((Action)state.Node.Object).Data.Add(action);
-				else
-					throw new Exception("Invalid node " + state.Node.Type);
-				state.Node = new Node(typeof(Action), action, indentLevel, state.Node);
+                else
+                    throw new Exception("Invalid node " + state.Node.Type + " while parsing " + data);
+                state.Node = new Node(typeof(Action), action, indentLevel, state.Node);
 				return;
 			}
 
@@ -289,9 +289,9 @@ namespace HearthstoneReplays.Parser.Handlers
 				var metaInfo = new Info {Id = entity, Index = int.Parse(index), Entity = entity};
 				if(state.Node.Type == typeof(MetaData))
 					((MetaData)state.Node.Object).MetaInfo.Add(metaInfo);
-				else
-					throw new Exception("Invalid node " + state.Node.Type);
-			    return;
+                else
+                    throw new Exception("Invalid node " + state.Node.Type + " while parsing " + data);
+                return;
 			}
 
 			match = Regexes.ActionShowEntityRegex.Match(data);
@@ -308,8 +308,8 @@ namespace HearthstoneReplays.Parser.Handlers
 				else if(state.Node.Type == typeof(Action))
 					((Action)state.Node.Object).Data.Add(showEntity);
 				else
-					throw new Exception("Invalid node " + state.Node.Type);
-				state.Node = new Node(typeof(ShowEntity), showEntity, indentLevel, state.Node);
+                    throw new Exception("Invalid node " + state.Node.Type + " while parsing " + data);
+                state.Node = new Node(typeof(ShowEntity), showEntity, indentLevel, state.Node);
 				return;
 			}
 
