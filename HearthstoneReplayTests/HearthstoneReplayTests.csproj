@@ -159,7 +159,7 @@
     <EmbeddedResource Include="TestData\new_meta_log.txt" />
     <EmbeddedResource Include="TestData\change_entity.txt" />
     <EmbeddedResource Include="TestData\card_draw_game_state.txt" />
-    <EmbeddedResource Include="TestData\bugs.txt" />
+    <EmbeddedResource Include="TestData\card_stolen_by_opp.txt" />
     <EmbeddedResource Include="TestData\healing.txt" />
     <EmbeddedResource Include="TestData\armor.txt" />
     <EmbeddedResource Include="TestData\game_report__damage_at_end_taken.txt" />
@@ -170,6 +170,7 @@
     <EmbeddedResource Include="TestData\plague_lord_one_run_defeat_2.txt" />
     <EmbeddedResource Include="TestData\bulwark_of_death.txt" />
     <EmbeddedResource Include="TestData\toki_hero_power.txt" />
+    <EmbeddedResource Include="TestData\bugs.txt" />
     <Content Include="TestData\unknown_human_player.txt" />
     <EmbeddedResource Include="TestData\shirvallah.txt" />
     <EmbeddedResource Include="TestData\beastly_beauty.txt" />

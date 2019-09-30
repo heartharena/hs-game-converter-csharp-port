@@ -81,6 +81,14 @@ namespace HearthstoneReplayTests
                 {
                     new { EventName = "NEW_GAME", ExpectedEventCount = 1 },
                 }},
+                new { FileName = "card_stolen_by_opp", Events = new[]
+                {
+                    new { EventName = "CREATE_CARD_IN_DECK", ExpectedEventCount = 6 },
+                    new { EventName = "CARD_DRAW_FROM_DECK", ExpectedEventCount = 14 },
+                    new { EventName = "CARD_STOLEN", ExpectedEventCount = 1 },
+                    new { EventName = "CARD_REMOVED_FROM_DECK", ExpectedEventCount = 5 },
+                    new { EventName = "RECEIVE_CARD_IN_HAND", ExpectedEventCount = 1 },
+                }},
             };
 
             foreach (dynamic fileOutput in fileOutputs)

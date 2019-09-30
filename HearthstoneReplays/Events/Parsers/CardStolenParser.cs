@@ -54,6 +54,33 @@ namespace HearthstoneReplays.Events.Parsers
                         new {
                             newControllerId = tagChange.Value
                         }),
+                    // A "stolen" event can first remove the card from the deck before changing the controller (
+                    // (in two separate steps), which is why we remove it
+                    (GameEventProvider provider) =>
+                        {
+                        if (provider == null)
+                        {
+                            Logger.Log("Error: trying to instantiate an event with null provider", node.CreationLogLine);
+                            return false;
+                        }
+                        var gameEvent = provider.SupplyGameEvent();
+                        if (gameEvent == null)
+                        {
+                            Logger.Log("Could not identify gameEvent", provider.CreationLogLine);
+                            return false;
+                        }
+                        if (gameEvent.Type == "CARD_REMOVED_FROM_DECK")
+                        {
+                            dynamic obj = gameEvent.Value;
+                            return obj != null && (int)obj.EntityId == tagChange.Entity;
+                        }
+                        else if (gameEvent.Type == "RECEIVE_CARD_IN_HAND")
+                        {
+                            dynamic obj = gameEvent.Value;
+                            return obj != null && (int)obj.EntityId == tagChange.Entity;
+                        }
+                        return false;
+                    },
                     true,
                     node.CreationLogLine) };
             }
@@ -81,6 +108,26 @@ namespace HearthstoneReplays.Events.Parsers
                         new {
                             newControllerId = showEntity.GetTag(GameTag.CONTROLLER)
                         }),
+                    (GameEventProvider provider) =>
+                        { 
+                        if (provider == null)
+                        {
+                            Logger.Log("Error: trying to instantiate an event with null provider", node.CreationLogLine);
+                            return false;
+                        }
+                        var gameEvent = provider.SupplyGameEvent();
+                        if (gameEvent == null)
+                        {
+                            Logger.Log("Could not identify gameEvent", provider.CreationLogLine);
+                            return false;
+                        }
+                        if (gameEvent.Type != "CARD_REMOVED_FROM_DECK")
+                        {
+                            return false;
+                        }
+                        dynamic obj = gameEvent.Value;
+                        return obj != null && (int)obj.EntityId == showEntity.Entity;
+                    },
                     true,
                     node.CreationLogLine) };
             }

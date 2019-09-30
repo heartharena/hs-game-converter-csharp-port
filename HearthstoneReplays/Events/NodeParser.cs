@@ -84,6 +84,7 @@ namespace HearthstoneReplays.Events
         {
             lock(listLock)
             {
+                // So here we only look at the predicates that have already been enqueued
                 var shouldUnqueuePredicates = providers
                     .Select(provider => provider.isDuplicatePredicate)
                     .ToList();
